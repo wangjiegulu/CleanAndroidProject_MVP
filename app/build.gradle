@@ -1,0 +1,105 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion global_compileSdkVersion
+    defaultConfig {
+        applicationId "com.wangjiegulu.cleanandroidprojectmvp"
+        minSdkVersion global_minSdkVersion
+        targetSdkVersion global_targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/rxjava.properties'
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        disable 'InvalidPackage'
+        abortOnError false
+        absolutePaths false
+        xmlReport true
+        htmlReport true
+//        lintConfig file("$rootDir/build_script/analysis/lint/lint.xml")
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+//        incremental true
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+dependencies {
+    //********************************* for app runtime *********************************//
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:$global_supportVersion"
+    implementation "com.android.support.constraint:constraint-layout:$global_constraintLayoutVersion"
+
+    // RecyclerView
+    implementation "com.android.support:recyclerview-v7:$global_supportVersion"
+
+    // mvp architecture
+    implementation "com.github.wangjiegulu:mvparchitecture:$global_mvparchitecutureVersion"
+    implementation "com.github.wangjiegulu:mvparchitecture-rx:$global_mvparchitecutureRxVersion"
+
+    // glide
+    implementation "com.github.bumptech.glide:glide:$global_glideVersion"
+
+    // dagger2
+    implementation "com.google.dagger:dagger:$global_daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$global_daggerCompilerVersion"
+
+    // rxjava/rxandroid
+    implementation "io.reactivex.rxjava2:rxjava:$global_rxjavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$global_rxandroidVersion"
+
+    // Model Layer
+    implementation project(':provider')
+
+    //********************************* for test *********************************//
+    // --------- android context ---------- //
+    testImplementation "junit:junit:$global_junitVersion"
+    androidTestImplementation "com.android.support.test:runner:$global_runnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$global_espressoVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$global_espressoVersion"
+    androidTestImplementation "com.google.dexmaker:dexmaker-mockito:$global_dexmakerMockitoVersion"
+    // Set this dependency to use JUnit 4 rules
+    androidTestImplementation "com.android.support.test:rules:$global_runnerVersion"
+
+    // --------- java context ---------- //
+    testImplementation "junit:junit:$global_junitVersion"
+    testImplementation "org.mockito:mockito-core:$global_mockitoVersion"
+
+
+}

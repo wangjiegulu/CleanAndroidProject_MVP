@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CleanAndroidProject_MVP</string>
+    <string name="loading">loading…</string>
+    <string name="unknown_stargazers_count">unknown stargazers count</string>
+</resources>

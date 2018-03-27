@@ -1,0 +1,76 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url uri('/Users/wangjie/.m2/repository')
+        }
+    }
+
+    // --refresh-dependencies
+    configurations.all {
+        // check for updates every build
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    }
+
+    ext {
+        // ************** app configuration ************** //
+        global_compileSdkVersion = 27
+        global_minSdkVersion = 14
+        global_targetSdkVersion = 27
+
+        // ************** for app ************** //
+        global_supportVersion = '27.1.0'
+        global_constraintLayoutVersion = '1.0.2'
+        global_mvparchitecutureVersion = '2.0.0'
+        global_mvparchitecutureRxVersion = '2.0.0'
+        global_glideVersion = '4.6.1'
+        global_daggerVersion = '2.11'
+        global_daggerCompilerVersion = '2.11'
+
+        global_rxjavaVersion = '2.1.11'
+        global_rxandroidVersion = '2.0.2'
+
+        global_okhttpVersion = '3.10.0'
+        global_dalRequestVersion = '0.0.1-SNAPSHOT'
+        global_dalRequestGsonVersion = '0.0.1-SNAPSHOT'
+        global_gsonVersion = '2.8.0'
+
+        global_rapidormApiVersion = '2.2.0'
+        global_rapidormVersion = '2.2.1@aar'
+        global_rapidormCompilerVersion = '2.2.0'
+
+        // ************** for test ************** //
+        global_junitVersion = '4.12'
+        global_mockitoVersion = '1.10.19'
+        global_dexmakerMockitoVersion = '1.2'
+//        global_powerMockito = '1.6.2'
+//        global_hamcrestVersion = '1.3'
+        global_runnerVersion = '1.0.1'
+        global_rulesVersion = '0.5'
+        global_espressoVersion = '3.0.1'
+//        global_jacocoToolVersion = '0.7.7.201606060606'
+
+    }
+
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
