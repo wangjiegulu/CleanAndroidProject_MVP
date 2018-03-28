@@ -2,7 +2,20 @@
 
 Clean Android Project Example (MVP).
 
-## packages
+## Libraries and tools used
+
+- [RxJava2](https://github.com/ReactiveX/RxJava/wiki/What's-different-in-2.0)
+- [Dagger2)](https://github.com/google/dagger)
+- [OkHttp](http://square.github.io/okhttp/)
+- [dal_request](https://github.com/wangjiegulu/dal_request)
+- [MVPArchitecture](https://github.com/wangjiegulu/MVPArchitecture)
+- [Gson](https://github.com/google/gson)
+- [RapidORM](https://github.com/wangjiegulu/RapidORM)
+- [Mockito](http://site.mockito.org/)
+- [Espresso](https://developer.android.com/training/testing/espresso/index.html)
+
+
+## Packages
 
 ```
 app:
@@ -36,8 +49,6 @@ app:
                    +--- view/ -> View modules for {Main}Activity.
                    |
                    +--- vm/ -> ViewModels for {Main}Activity.
-
-
 
 provider(the `model` layer in `MVP`, provider logic and data for app):
 /com/your/packages/provider/
