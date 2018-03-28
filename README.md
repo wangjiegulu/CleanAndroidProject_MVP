@@ -50,6 +50,8 @@ app:
                    |
                    +--- vm/ -> ViewModels for {Main}Activity.
 
+
+
 provider(the `model` layer in `MVP`, provider logic and data for app):
 /com/your/packages/provider/
     |
