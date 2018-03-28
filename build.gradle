@@ -18,9 +18,9 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven {
-            url uri('/Users/wangjie/.m2/repository')
-        }
+//        maven {
+//            url uri('/Users/wangjie/.m2/repository')
+//        }
     }
 
     // --refresh-dependencies
@@ -48,8 +48,8 @@ allprojects {
         global_rxandroidVersion = '2.0.2'
 
         global_okhttpVersion = '3.10.0'
-        global_dalRequestVersion = '0.0.1-SNAPSHOT'
-        global_dalRequestGsonVersion = '0.0.1-SNAPSHOT'
+        global_dalRequestVersion = '2.1.0'
+        global_dalRequestGsonVersion = '2.1.0'
         global_gsonVersion = '2.8.0'
 
         global_rapidormApiVersion = '2.2.0'

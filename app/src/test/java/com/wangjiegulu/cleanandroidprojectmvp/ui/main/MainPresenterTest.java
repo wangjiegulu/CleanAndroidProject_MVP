@@ -1,9 +1,7 @@
 package com.wangjiegulu.cleanandroidprojectmvp.ui.main;
 
-import android.os.SystemClock;
-
-import com.wangjiegulu.cleanandroidprojectmvp.base.ArgumentsAnswer;
 import com.wangjiegulu.cleanandroidprojectmvp.base.AppImmediateSchedulerRule;
+import com.wangjiegulu.cleanandroidprojectmvp.base.ArgumentsAnswer;
 import com.wangjiegulu.cleanandroidprojectmvp.provider.bll.interactor.contract.GithubInteractor;
 import com.wangjiegulu.cleanandroidprojectmvp.provider.dal.net.http.entity.GithubRepository;
 import com.wangjiegulu.cleanandroidprojectmvp.ui.main.vm.MainRepositoryVM;
@@ -61,7 +59,6 @@ public class MainPresenterTest {
     public void requestUserRepositories_success() throws Exception {
         doReturn(
                 Observable.create(emitter -> {
-                    SystemClock.sleep(1000);
                     emitter.onNext(new GithubRepository());
                     emitter.onNext(new GithubRepository());
                     emitter.onNext(new GithubRepository());
