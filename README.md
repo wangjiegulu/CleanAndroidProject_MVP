@@ -5,7 +5,7 @@ Clean Android Project Example (MVP).
 ## Libraries and tools used
 
 - [RxJava2](https://github.com/ReactiveX/RxJava/wiki/What's-different-in-2.0)
-- [Dagger2)](https://github.com/google/dagger)
+- [Dagger2](https://github.com/google/dagger)
 - [OkHttp](http://square.github.io/okhttp/)
 - [dal_request](https://github.com/wangjiegulu/dal_request)
 - [MVPArchitecture](https://github.com/wangjiegulu/MVPArchitecture)
