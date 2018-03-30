@@ -46,9 +46,9 @@ public class UserInteractorImpl extends BaseInteractor implements UserInteractor
         return toObservable(() -> currentLoginCache.getCurrentUser()).subscribeOn(ProviderSchedulers.db());
     }
 
-    @Override
-    public void saveLoginInfoSync(User user) {
-        // TODO: 02/08/2017 wangjie
-    }
+//    @Override
+//    public void saveLoginInfoSync(User user) {
+//        // TODO: 02/08/2017 wangjie
+//    }
 
 }

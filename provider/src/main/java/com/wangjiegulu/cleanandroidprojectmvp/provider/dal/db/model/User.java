@@ -76,4 +76,8 @@ public class User implements Serializable {
     public long getUserIdDefaultNotLogin() {
         return getUserId(USER_NOT_LOGIN_USER_ID);
     }
+
+    public boolean isNotLogin() {
+        return User.USER_NOT_LOGIN == this;
+    }
 }

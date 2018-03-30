@@ -16,10 +16,10 @@ public interface UserInteractor {
      */
     Observable<User> getCurrentUserInfo();
 
-    /**
-     * 同步保存用户信息
-     *
-     * @param user
-     */
-    void saveLoginInfoSync(User user);
+//    /**
+//     * 同步保存用户信息
+//     *
+//     * @param user
+//     */
+//    void saveLoginInfoSync(User user);
 }

@@ -1,4 +1,4 @@
-package com.wangjiegulu.cleanandroidprojectmvp.application.configuration.network.interceptor;
+package com.wangjiegulu.cleanandroidprojectmvp.provider.bll.application.configuration.network.interceptor;
 
 import com.wangjiegulu.dal.request.core.interceptor.IRequestInterceptor;
 import com.wangjiegulu.dal.request.core.request.XRequest;

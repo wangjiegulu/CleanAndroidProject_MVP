@@ -2,21 +2,22 @@ package com.wangjiegulu.cleanandroidprojectmvp.application;
 
 import android.app.Application;
 import android.os.Looper;
+import android.support.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
-import com.wangjie.rapidorm.constants.RapidORMConfig;
 import com.wangjiegulu.cleanandroidprojectmvp.BuildConfig;
-import com.wangjiegulu.cleanandroidprojectmvp.application.configuration.network.interceptor.GithubRequestInterceptor;
 import com.wangjiegulu.cleanandroidprojectmvp.application.configuration.scheduler.AppSchedulers;
-import com.wangjiegulu.cleanandroidprojectmvp.application.manager.AppManager;
 import com.wangjiegulu.cleanandroidprojectmvp.inject.app.AppComponent;
 import com.wangjiegulu.cleanandroidprojectmvp.inject.app.AppModule;
 import com.wangjiegulu.cleanandroidprojectmvp.inject.app.DaggerAppComponent;
+import com.wangjiegulu.cleanandroidprojectmvp.inject.modules.InteractorModule;
+import com.wangjiegulu.cleanandroidprojectmvp.inject.user.DaggerUserComponent;
 import com.wangjiegulu.cleanandroidprojectmvp.inject.user.UserComponent;
+import com.wangjiegulu.cleanandroidprojectmvp.inject.user.UserModule;
 import com.wangjiegulu.cleanandroidprojectmvp.provider.bll.application.ProviderApplication;
+import com.wangjiegulu.cleanandroidprojectmvp.provider.bll.application.configuration.ApplicationConfiguration;
+import com.wangjiegulu.cleanandroidprojectmvp.provider.dal.db.model.User;
 import com.wangjiegulu.cleanandroidprojectmvp.util.AppUtil;
-import com.wangjiegulu.dal.request.XHttpManager;
-import com.wangjiegulu.dal.request.gson.DefaultGsonResponseConverter;
 
 /**
  * Author: wangjie
@@ -48,29 +49,53 @@ public class CAPApplication extends Application {
                 .appModule(new AppModule(this))
                 .build();
 
-        // Provider
-        ProviderApplication.getInstance()
-                .setApplication(this)
-                .setBuildConfigDebug(isDebug);
-
         // init app schedulers
         AppSchedulers.initialize();
 
-        // configuration dal_request
-        XHttpManager.getInstance()
-                .addRequestInterceptor(new GithubRequestInterceptor())
-                .setResponseConverter(DefaultGsonResponseConverter.create())
-                .setDebug(isDebug);
-
-        // rapidorm
-        RapidORMConfig.DEBUG = isDebug;
+        // Provider
+        ProviderApplication.getInstance()
+                .setApplicationConfiguration(
+                        new ApplicationConfiguration()
+                                .setApplication(this)
+                                .setBuildConfigDebug(isDebug)
+                )
+                .initialize();
 
         // RxBus
 //        RxBus2.setDebug(isDebug);
 
-        // 自动切换到上次登录的用户
-        AppManager.autoSwitchUser();
+        // init user login status
+        doSwitchUser();
+    }
 
+    /**
+     * Switch to user login status automatically which last login when launch the app.
+     */
+    public void doSwitchUser() {
+        // switch user login status of model layer.
+        ProviderApplication.getInstance().doSwitchUser();
+        // switch user login status of view layer
+        createUserComponent();
+    }
+
+    /**
+     * Switch to special user login status
+     */
+    public void doSwitchUser(@NonNull User user) {
+        // switch user login status of model layer.
+        ProviderApplication.getInstance().doSwitchUser(user);
+        // switch user login status of view layer
+        createUserComponent();
+    }
+
+    private void createUserComponent() {
+        /* 1 */
+        userComponent = DaggerUserComponent
+                .builder()
+                .userModule(new UserModule(this))
+                .interactorModule(new InteractorModule())
+                .appComponent(appComponent)
+                .build();
     }
 
 
