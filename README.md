@@ -25,11 +25,7 @@ app:
     |     |
     |     +--- configuration/
     |             |
-    |             +--- network/
-    |             |      |
-    |             |      +--- interceptor/ -> Interceptors, such as add default common parameters for each request, parameters sign, encryption, login token status time out...
-    |             |
-    |             +--- ...
+    |             +--- AppSchedulers -> Schedulers of RxJava in viewer layer.
     |
     |
     +--- inject/ -> CI configuration, inject interactors from bll(business logic layer).
@@ -58,6 +54,15 @@ provider(the `model` layer in `MVP`, provider logic and data for app):
     +--- bll/ -> Business logic layer.
     |     |
     |     +--- application/ -> App application wrapper for provider.
+    |     |         |
+    |     |         +--- configuration/
+    |     |                    |
+    |     |                    +--- ProviderSchedulers -> Schedulers of RxJava in Model layer.
+    |     |                    |
+    |     |                    +--- network/
+    |     |                          |
+    |     |                          +--- interceptor/ -> Interceptors, such as add default common parameters for each request, parameters sign, encryption, login token status time out...
+    |     |
     |     |
     |     +--- inject/ -> CI configuration, inject dependencies from dal(data access layer).
     |     |
