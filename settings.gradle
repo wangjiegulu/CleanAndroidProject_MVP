@@ -1,1 +1,1 @@
-include ':app', ':provider'
+include ':app', ':providers:provider_bll', ':providers:provider_dal', ':usage_support'

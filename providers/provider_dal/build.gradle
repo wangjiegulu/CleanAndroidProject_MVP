@@ -1,0 +1,87 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion global_compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion global_minSdkVersion
+        targetSdkVersion global_targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // http://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.LintOptions.html#com.android.build.gradle.internal.dsl.LintOptions
+    lintOptions {
+        checkReleaseBuilds false
+        disable 'InvalidPackage'
+        abortOnError false
+        absolutePaths false
+        xmlReport true
+        htmlReport true
+//        lintConfig file("$rootDir/build_script/analysis/lint/lint.xml")
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+}
+
+dependencies {
+    //********************************* for app runtime *********************************//
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(':usage_support')
+
+    // rxjava/rxandroid
+    implementation "io.reactivex.rxjava2:rxjava:$global_rxjavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$global_rxandroidVersion"
+
+    // okhttp
+    implementation "com.squareup.okhttp3:okhttp:$global_okhttpVersion"
+    // dal request
+    implementation("com.github.wangjiegulu:dal_request:$global_dalRequestVersion", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+        exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
+    })
+    implementation("com.github.wangjiegulu:dal_request-gson:$global_dalRequestGsonVersion", {
+        exclude group: 'com.google.code.gson', module: 'gson'
+    })
+
+    // gson
+    implementation "com.google.code.gson:gson:$global_gsonVersion"
+
+    // RapidORM
+    implementation "com.github.wangjiegulu:rapidorm:$global_rapidormVersion"
+    implementation "com.github.wangjiegulu:rapidorm-api:$global_rapidormApiVersion"
+    annotationProcessor "com.github.wangjiegulu:rapidorm-compiler:$global_rapidormCompilerVersion"
+
+    //********************************* for test *********************************//
+    // --------- android context ---------- //
+    testImplementation "junit:junit:$global_junitVersion"
+    androidTestImplementation "com.android.support.test:runner:$global_runnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$global_espressoVersion"
+    androidTestImplementation "com.google.dexmaker:dexmaker-mockito:$global_dexmakerMockitoVersion"
+    // Set this dependency to use JUnit 4 rules
+    androidTestImplementation "com.android.support.test:rules:$global_runnerVersion"
+
+    // --------- java context ---------- //
+    testImplementation "junit:junit:$global_junitVersion"
+    testImplementation "org.mockito:mockito-core:$global_mockitoVersion"
+}

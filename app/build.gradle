@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion global_compileSdkVersion
     defaultConfig {
-        applicationId "com.wangjiegulu.cleanandroidprojectmvp"
+        applicationId "com.wangjiegulu.capmvp"
         minSdkVersion global_minSdkVersion
         targetSdkVersion global_targetSdkVersion
         versionCode 1
@@ -84,8 +84,13 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$global_rxjavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$global_rxandroidVersion"
 
+    // usage support
+    implementation project(':usage_support')
     // Model Layer
-    implementation project(':provider')
+    implementation project(':providers:provider_bll')
+
+    implementation "com.github.wangjiegulu:rapidooo-api-local:0.0.1-SNAPSHOT"
+    annotationProcessor "com.github.wangjiegulu:rapidooo-compiler-local:0.0.1-SNAPSHOT"
 
     //********************************* for test *********************************//
     // --------- android context ---------- //
