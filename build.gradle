@@ -18,9 +18,9 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven {
-            url uri('/Users/wangjie/.m2/repository')
-        }
+//        maven {
+//            url uri('/Users/wangjie/.m2/repository')
+//        }
     }
 
     // --refresh-dependencies
@@ -55,6 +55,9 @@ allprojects {
         global_rapidormApiVersion = '2.2.0'
         global_rapidormVersion = '2.2.1@aar'
         global_rapidormCompilerVersion = '2.2.0'
+
+        global_rapidoooApiVersion = '0.0.2'
+        global_rapidoooCompilerVersion = '0.0.2'
 
         // ************** for test ************** //
         global_junitVersion = '4.12'

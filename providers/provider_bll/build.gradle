@@ -75,8 +75,8 @@ dependencies {
     implementation "com.github.wangjiegulu:rapidorm-api:$global_rapidormApiVersion"
     annotationProcessor "com.github.wangjiegulu:rapidorm-compiler:$global_rapidormCompilerVersion"
 
-    implementation "com.github.wangjiegulu:rapidooo-api-local:0.0.1-SNAPSHOT"
-    annotationProcessor "com.github.wangjiegulu:rapidooo-compiler-local:0.0.1-SNAPSHOT"
+    implementation "com.github.wangjiegulu:rapidooo-api:$global_rapidoooApiVersion"
+    annotationProcessor "com.github.wangjiegulu:rapidooo-compiler:$global_rapidoooCompilerVersion"
 
     //********************************* for test *********************************//
     // --------- android context ---------- //
