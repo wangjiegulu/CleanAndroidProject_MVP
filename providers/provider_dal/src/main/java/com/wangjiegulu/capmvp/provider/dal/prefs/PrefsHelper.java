@@ -58,7 +58,7 @@ public class PrefsHelper {
     }
 
     public float getFloat(String key) {
-        return this.prefs.getFloat(key, 0f);
+        return this.prefs.getFloat(key, 0F);
     }
 
     public long getLong(String key, long defaultVal) {
@@ -66,7 +66,7 @@ public class PrefsHelper {
     }
 
     public long getLong(String key) {
-        return this.prefs.getLong(key, 0l);
+        return this.prefs.getLong(key, 0L);
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)

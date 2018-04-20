@@ -5,7 +5,6 @@ import android.app.Application;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.wangjiegulu.capmvp.provider.bll.application.configuration.network.interceptor.GithubRequestInterceptor;
 import com.wangjiegulu.capmvp.provider.bll.application.configuration.scheduler.ProviderSchedulers;
 import com.wangjiegulu.capmvp.provider.bll.inject.application.DaggerProviderApplicationComponent;
 import com.wangjiegulu.capmvp.provider.bll.inject.application.ProviderApplicationComponent;
@@ -16,12 +15,10 @@ import com.wangjiegulu.capmvp.provider.bll.inject.prefs.ProviderApplicationPrefs
 import com.wangjiegulu.capmvp.provider.bll.inject.prefs.ProviderUserPrefsModule;
 import com.wangjiegulu.capmvp.provider.bll.interactor.bo.UserBO;
 import com.wangjiegulu.capmvp.provider.dal.application.DalApplication;
-import com.wangjiegulu.capmvp.provider.dal.db.helper.DatabaseFactory;
 import com.wangjiegulu.capmvp.provider.dal.db.po.User;
 import com.wangjiegulu.capmvp.provider.dal.prefs.PrefsConstants;
+import com.wangjiegulu.capmvp.provider.dal.proxy.db.factory.DatabaseFactoryProxy;
 import com.wangjiegulu.capmvp.usagesupport.application.ApplicationConfiguration;
-import com.wangjiegulu.dal.request.XHttpManager;
-import com.wangjiegulu.dal.request.gson.DefaultGsonResponseConverter;
 
 /**
  * 与主项目之间上下文环境的同步
@@ -84,16 +81,10 @@ public class BllApplication {
                 .providerApplicationPrefsModule(new ProviderApplicationPrefsModule())
                 .build();
 
-        boolean isDebug = applicationConfiguration.isBuildConfigDebug();
+//        boolean isDebug = applicationConfiguration.isBuildConfigDebug();
 
         // init provider schedulers
         ProviderSchedulers.initialize();
-
-        // configuration dal_request
-        XHttpManager.getInstance()
-                .addRequestInterceptor(new GithubRequestInterceptor())
-                .setResponseConverter(DefaultGsonResponseConverter.create())
-                .setDebug(isDebug);
 
         DalApplication.getInstance().initialize();
     }
@@ -143,7 +134,7 @@ public class BllApplication {
                 .putLong(PrefsConstants.PREFS_GLOBAL_USER_ID, userId).commit();
         /* 3 */
         // TODO: 4/17/17 wangjie optim databaseFactory scope
-        DatabaseFactory.getInstance().resetDatabase(
+        DatabaseFactoryProxy.getInstance().resetDatabase(
                 BllApplication.getInstance().getCurrentUserCode(userId) + ".db"
         );
         /* 4 */

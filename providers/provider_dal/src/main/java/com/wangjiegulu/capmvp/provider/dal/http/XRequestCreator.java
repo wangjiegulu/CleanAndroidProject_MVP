@@ -1,7 +1,8 @@
 package com.wangjiegulu.capmvp.provider.dal.http;
 
 import com.wangjiegulu.capmvp.provider.dal.http.webapi.WebApiConstants;
-import com.wangjiegulu.dal.request.core.request.XRequest;
+import com.wangjiegulu.capmvp.provider.dal.proxy.net.http.IRequestProxy;
+import com.wangjiegulu.capmvp.provider.dal.proxy.net.http.RequestProxy;
 
 /**
  * Author: wangjie
@@ -13,8 +14,8 @@ public class XRequestCreator {
     /**
      * 默认https
      */
-    public XRequest createRequest(String httpUrl) {
-        return XRequest.create(WebApiConstants.formatHttpsWebApi(httpUrl));
+    public IRequestProxy createRequest(String httpUrl) {
+        return new RequestProxy(WebApiConstants.formatHttpsWebApi(httpUrl));
 //        return XRequest.create(httpUrl);
     }
 

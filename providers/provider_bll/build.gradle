@@ -45,6 +45,7 @@ android {
 dependencies {
     //********************************* for app runtime *********************************//
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:support-annotations:$global_supportVersion"
 
     implementation project(':usage_support')
 
@@ -57,23 +58,8 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$global_rxjavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$global_rxandroidVersion"
 
-    // dal request
-    implementation("com.github.wangjiegulu:dal_request:$global_dalRequestVersion", {
-        exclude group: 'com.android.support', module: 'support-annotations'
-        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
-        exclude group: 'io.reactivex.rxjava2', module: 'rxjava'
-    })
-    implementation("com.github.wangjiegulu:dal_request-gson:$global_dalRequestGsonVersion", {
-        exclude group: 'com.google.code.gson', module: 'gson'
-    })
-
     // gson
     implementation "com.google.code.gson:gson:$global_gsonVersion"
-
-    // RapidORM
-    implementation "com.github.wangjiegulu:rapidorm:$global_rapidormVersion"
-    implementation "com.github.wangjiegulu:rapidorm-api:$global_rapidormApiVersion"
-    annotationProcessor "com.github.wangjiegulu:rapidorm-compiler:$global_rapidormCompilerVersion"
 
     implementation "com.github.wangjiegulu:rapidooo-api:$global_rapidoooApiVersion"
     annotationProcessor "com.github.wangjiegulu:rapidooo-compiler:$global_rapidoooCompilerVersion"

@@ -1,4 +1,4 @@
-package com.wangjiegulu.capmvp.provider.bll.application.configuration.network.interceptor;
+package com.wangjiegulu.capmvp.provider.dal.application.configuration.network.interceptor;
 
 import com.wangjiegulu.dal.request.core.interceptor.IRequestInterceptor;
 import com.wangjiegulu.dal.request.core.request.XRequest;

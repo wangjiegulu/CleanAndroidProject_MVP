@@ -3,7 +3,10 @@ package com.wangjiegulu.capmvp.provider.dal.application;
 import android.app.Application;
 
 import com.wangjie.rapidorm.constants.RapidORMConfig;
+import com.wangjiegulu.capmvp.provider.dal.application.configuration.network.interceptor.GithubRequestInterceptor;
 import com.wangjiegulu.capmvp.usagesupport.application.ApplicationConfiguration;
+import com.wangjiegulu.dal.request.XHttpManager;
+import com.wangjiegulu.dal.request.gson.DefaultGsonResponseConverter;
 
 /**
  * Author: wangjie
@@ -33,6 +36,12 @@ public class DalApplication {
 
         // rapidorm
         RapidORMConfig.DEBUG = isDebug;
+
+        // configuration dal_request
+        XHttpManager.getInstance()
+                .addRequestInterceptor(new GithubRequestInterceptor())
+                .setResponseConverter(DefaultGsonResponseConverter.create())
+                .setDebug(isDebug);
     }
 
 

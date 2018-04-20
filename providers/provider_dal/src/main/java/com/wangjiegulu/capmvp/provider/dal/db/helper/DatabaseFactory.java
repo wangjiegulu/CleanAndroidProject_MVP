@@ -14,15 +14,19 @@ import java.util.HashMap;
  * Author: wangjie Email: tiantian.china.2@gmail.com Date: 6/25/15.
  */
 public class DatabaseFactory extends RapidORMConnection<RapidORMDefaultSQLiteOpenHelperDelegate> {
-    private static class Holder {
-        private static DatabaseFactory instance = new DatabaseFactory();
-    }
+//    private static class Holder {
+//        private static DatabaseFactory instance = new DatabaseFactory();
+//    }
+//
+//    public synchronized static DatabaseFactory getInstance() {
+//        return Holder.instance;
+//    }
 
-    public synchronized static DatabaseFactory getInstance() {
-        return Holder.instance;
-    }
+//    private DatabaseFactory() {
+//        super();
+//    }
 
-    private DatabaseFactory() {
+    public DatabaseFactory() {
         super();
     }
 
