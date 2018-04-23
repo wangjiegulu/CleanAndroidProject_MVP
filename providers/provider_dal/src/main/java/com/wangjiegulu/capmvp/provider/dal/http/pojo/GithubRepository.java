@@ -2,14 +2,15 @@ package com.wangjiegulu.capmvp.provider.dal.http.pojo;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /**
  * Author: wangjie
  * Email: tiantian.china.2@gmail.com
  * Date: 23/03/2018.
  */
-public class GithubRepository implements Serializable {
+public class GithubRepository implements Parcelable {
     private Long id;
     private String name;
     @SerializedName("full_name")
@@ -85,4 +86,47 @@ public class GithubRepository implements Serializable {
     public void setLanguage(String language) {
         this.language = language;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(this.id);
+        dest.writeString(this.name);
+        dest.writeString(this.fullName);
+        dest.writeString(this.htmlUrl);
+        dest.writeValue(this.fork);
+        dest.writeValue(this.size);
+        dest.writeValue(this.stargazersCount);
+        dest.writeString(this.language);
+    }
+
+    public GithubRepository() {
+    }
+
+    protected GithubRepository(Parcel in) {
+        this.id = (Long) in.readValue(Long.class.getClassLoader());
+        this.name = in.readString();
+        this.fullName = in.readString();
+        this.htmlUrl = in.readString();
+        this.fork = (Boolean) in.readValue(Boolean.class.getClassLoader());
+        this.size = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.stargazersCount = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.language = in.readString();
+    }
+
+    public static final Parcelable.Creator<GithubRepository> CREATOR = new Parcelable.Creator<GithubRepository>() {
+        @Override
+        public GithubRepository createFromParcel(Parcel source) {
+            return new GithubRepository(source);
+        }
+
+        @Override
+        public GithubRepository[] newArray(int size) {
+            return new GithubRepository[size];
+        }
+    };
 }
