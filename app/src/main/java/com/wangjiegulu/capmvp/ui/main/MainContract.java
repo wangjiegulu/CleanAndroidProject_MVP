@@ -1,6 +1,5 @@
 package com.wangjiegulu.capmvp.ui.main;
 
-import com.wangjiegulu.capmvp.ui.main.adapter.RepositoryAdapter;
 import com.wangjiegulu.mvparchitecture.library.presenter.Presenter;
 import com.wangjiegulu.mvparchitecture.library.viewer.Viewer;
 
@@ -12,7 +11,7 @@ import java.util.List;
  * Date: 23/03/2018.
  */
 public interface MainContract {
-    interface IMainViewer extends Viewer, RepositoryAdapter.OnRepositoryAdapterItemClickListener {
+    interface IMainViewer extends Viewer {
         void onRequestUserRepositories(List<GithubRepositoryMainVO> githubRepositories);
     }
 

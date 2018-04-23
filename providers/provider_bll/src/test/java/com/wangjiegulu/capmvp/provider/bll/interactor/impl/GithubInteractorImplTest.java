@@ -4,14 +4,13 @@ import com.wangjiegulu.capmvp.provider.bll.base.ProviderImmediateSchedulerRule;
 import com.wangjiegulu.capmvp.provider.bll.interactor.bo.GithubRepositoryBO;
 import com.wangjiegulu.capmvp.provider.dal.http.XRequestCreator;
 import com.wangjiegulu.capmvp.provider.dal.http.pojo.GithubRepository;
-import com.wangjiegulu.dal.request.core.request.XRequest;
+import com.wangjiegulu.capmvp.provider.dal.proxy.net.http.IRequestProxy;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 
 import java.lang.reflect.Type;
 
@@ -39,15 +38,18 @@ public class GithubInteractorImplTest {
     @Mock
     XRequestCreator xRequestCreator;
 
-    @Spy
-    XRequest xRequest;
+    @Mock
+    IRequestProxy requestProxy;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
         githubInteractor.xRequestCreator = xRequestCreator;
-        doReturn(xRequest).when(xRequestCreator).createRequest(anyString());
+        doReturn(requestProxy).when(xRequestCreator).createRequest(anyString());
+        doReturn(requestProxy).when(requestProxy).get();
+        doReturn(requestProxy).when(requestProxy).post();
+        doReturn(requestProxy).when(requestProxy).addParameter(anyString(), any());
     }
 
     @Test
@@ -56,7 +58,7 @@ public class GithubInteractorImplTest {
                 new GithubRepository(),
                 new GithubRepository(),
                 new GithubRepository()
-        ).toList().toObservable()).when(xRequest).observable(any(Type.class));
+        ).toList().toObservable()).when(requestProxy).observable(any(Type.class));
 
         TestObserver<GithubRepositoryBO> testObserver = new TestObserver<>();
 
@@ -73,7 +75,7 @@ public class GithubInteractorImplTest {
     public void requestUserGithubRepositories_error() {
         RuntimeException runtimeException = new RuntimeException();
         doReturn(Observable.error(runtimeException))
-                .when(xRequest).observable(any(Type.class));
+                .when(requestProxy).observable(any(Type.class));
 
         TestObserver<GithubRepositoryBO> testObserver = new TestObserver<>();
 

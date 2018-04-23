@@ -12,7 +12,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class MainActivity extends BaseActivity implements MainContract.IMainViewer {
+public class MainActivity extends BaseActivity implements MainContract.IMainViewer, RepositoryAdapter.OnRepositoryAdapterItemClickListener {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private RepositoryAdapter adapter;
