@@ -12,7 +12,6 @@ import android.support.test.runner.lifecycle.Stage;
 import com.wangjiegulu.capmvp.R;
 import com.wangjiegulu.capmvp.base.AppImmediateSchedulerRule;
 import com.wangjiegulu.capmvp.inject.viewer.ViewerComponent;
-import com.wangjiegulu.capmvp.provider.dal.net.http.entity.GithubRepository;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -64,15 +63,15 @@ public class MainActivityTest {
     @Test
     public void requestUserRepositories_normal() throws Throwable {
         activityRule.launchActivity(null);
-        List<MainRepositoryVM> list = new ArrayList<>();
+        List<GithubRepositoryMainVO> list = new ArrayList<>();
 
         for (int i = 0; i < 50; i++) {
-            GithubRepository githubRepository = mock(GithubRepository.class);
-            doReturn("name_" + i).when(githubRepository).getName();
-            doReturn(0 != i ? i * 123 : null).when(githubRepository).getStargazersCount();
-            System.out.println("requestUserRepositories_normal, githubRepository.getStargazersCount(): " + githubRepository.getStargazersCount());
+            GithubRepositoryMainVO githubRepositoryVO = mock(GithubRepositoryMainVO.class);
+            doReturn("name_" + i).when(githubRepositoryVO).getName();
+            doReturn(0 != i ? i * 123 : null).when(githubRepositoryVO).getStargazersCount();
+            System.out.println("requestUserRepositories_normal, githubRepository.getStargazersCount(): " + githubRepositoryVO.getStargazersCount());
 
-            list.add(new MainRepositoryVM(githubRepository));
+            list.add(githubRepositoryVO);
         }
         activityRule.runOnUiThread(() -> activityRule.getActivity().onRequestUserRepositories(list));
 
