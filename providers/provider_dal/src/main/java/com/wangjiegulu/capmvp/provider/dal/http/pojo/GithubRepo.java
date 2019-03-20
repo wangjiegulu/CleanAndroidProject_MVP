@@ -10,7 +10,7 @@ import android.os.Parcelable;
  * Email: tiantian.china.2@gmail.com
  * Date: 23/03/2018.
  */
-public class GithubRepository implements Parcelable {
+public class GithubRepo implements Parcelable {
     private Long id;
     private String name;
     @SerializedName("full_name")
@@ -104,10 +104,10 @@ public class GithubRepository implements Parcelable {
         dest.writeString(this.language);
     }
 
-    public GithubRepository() {
+    public GithubRepo() {
     }
 
-    protected GithubRepository(Parcel in) {
+    protected GithubRepo(Parcel in) {
         this.id = (Long) in.readValue(Long.class.getClassLoader());
         this.name = in.readString();
         this.fullName = in.readString();
@@ -118,15 +118,15 @@ public class GithubRepository implements Parcelable {
         this.language = in.readString();
     }
 
-    public static final Parcelable.Creator<GithubRepository> CREATOR = new Parcelable.Creator<GithubRepository>() {
+    public static final Parcelable.Creator<GithubRepo> CREATOR = new Parcelable.Creator<GithubRepo>() {
         @Override
-        public GithubRepository createFromParcel(Parcel source) {
-            return new GithubRepository(source);
+        public GithubRepo createFromParcel(Parcel source) {
+            return new GithubRepo(source);
         }
 
         @Override
-        public GithubRepository[] newArray(int size) {
-            return new GithubRepository[size];
+        public GithubRepo[] newArray(int size) {
+            return new GithubRepo[size];
         }
     };
 }

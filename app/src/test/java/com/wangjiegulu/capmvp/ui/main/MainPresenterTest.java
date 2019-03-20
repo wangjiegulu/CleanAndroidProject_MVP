@@ -2,7 +2,7 @@ package com.wangjiegulu.capmvp.ui.main;
 
 import com.wangjiegulu.capmvp.base.AppImmediateSchedulerRule;
 import com.wangjiegulu.capmvp.base.ArgumentsAnswer;
-import com.wangjiegulu.capmvp.provider.bll.interactor.bo.GithubRepositoryBO;
+import com.wangjiegulu.capmvp.provider.bll.interactor.bo.GithubRepoBO;
 import com.wangjiegulu.capmvp.provider.bll.interactor.contract.GithubInteractor;
 
 import org.junit.Before;
@@ -58,38 +58,38 @@ public class MainPresenterTest {
     public void requestUserRepositories_success() throws Exception {
         doReturn(
                 Observable.create(emitter -> {
-                    emitter.onNext(new GithubRepositoryBO());
-                    emitter.onNext(new GithubRepositoryBO());
-                    emitter.onNext(new GithubRepositoryBO());
+                    emitter.onNext(new GithubRepoBO());
+                    emitter.onNext(new GithubRepoBO());
+                    emitter.onNext(new GithubRepoBO());
                     emitter.onComplete();
                 })
         )
-                .when(githubInteractor).requestUserGithubRepositories(anyString());
+                .when(githubInteractor).requestUserGithubRepos(anyString());
 
-        ArgumentsAnswer argumentsAnswer;
-        doAnswer(argumentsAnswer = new ArgumentsAnswer()).when(viewer).onRequestUserRepositories(anyListOf(GithubRepositoryMainVO.class));
+        ArgumentsAnswer argumentsAnswer = new ArgumentsAnswer();
+        doAnswer(argumentsAnswer).when(viewer).onRequestUserRepositories(anyListOf(GithubRepoMainVO.class));
 
         presenter.requestUserRepositories("wangjiegulu");
 
         verify(presenter, times(1)).attachDisposable(anyObject());
-        verify(viewer, times(1)).onRequestUserRepositories(anyListOf(GithubRepositoryMainVO.class));
+        verify(viewer, times(1)).onRequestUserRepositories(anyListOf(GithubRepoMainVO.class));
         verify(viewer, times(1)).showLoadingDialog(anyInt());
 
         assertNotNull(argumentsAnswer);
         assertEquals(1, argumentsAnswer.getArguments().length);
-        assertEquals(3, ((List<GithubRepositoryMainVO>) argumentsAnswer.getArgument(0)).size());
+        assertEquals(3, ((List<GithubRepoMainVO>) argumentsAnswer.getArgument(0)).size());
 
     }
 
     @Test
     public void requestUserRepositories_error() throws Exception {
         doReturn(Observable.error(new RuntimeException()))
-                .when(githubInteractor).requestUserGithubRepositories(anyString());
+                .when(githubInteractor).requestUserGithubRepos(anyString());
 
         presenter.requestUserRepositories("wangjiegulu");
 
         verify(presenter, times(1)).attachDisposable(anyObject());
-        verify(viewer, never()).onRequestUserRepositories(anyListOf(GithubRepositoryMainVO.class));
+        verify(viewer, never()).onRequestUserRepositories(anyListOf(GithubRepoMainVO.class));
         verify(viewer, times(1)).showToast(anyString());
 
     }

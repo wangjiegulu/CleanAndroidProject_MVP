@@ -1,9 +1,9 @@
 package com.wangjiegulu.capmvp.provider.bll.interactor.impl;
 
 import com.wangjiegulu.capmvp.provider.bll.base.ProviderImmediateSchedulerRule;
-import com.wangjiegulu.capmvp.provider.bll.interactor.bo.GithubRepositoryBO;
-import com.wangjiegulu.capmvp.provider.dal.http.XRequestCreator;
-import com.wangjiegulu.capmvp.provider.dal.http.pojo.GithubRepository;
+import com.wangjiegulu.capmvp.provider.bll.interactor.bo.GithubRepoBO;
+import com.wangjiegulu.capmvp.provider.dal.http.XRequestRepository;
+import com.wangjiegulu.capmvp.provider.dal.http.pojo.GithubRepo;
 import com.wangjiegulu.capmvp.provider.dal.proxy.net.http.IRequestProxy;
 
 import org.junit.Before;
@@ -36,7 +36,7 @@ public class GithubInteractorImplTest {
     GithubInteractorImpl githubInteractor;
 
     @Mock
-    XRequestCreator xRequestCreator;
+    XRequestRepository xRequestRepository;
 
     @Mock
     IRequestProxy requestProxy;
@@ -45,8 +45,8 @@ public class GithubInteractorImplTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        githubInteractor.xRequestCreator = xRequestCreator;
-        doReturn(requestProxy).when(xRequestCreator).createRequest(anyString());
+        githubInteractor.xRequestRepository = xRequestRepository;
+        doReturn(requestProxy).when(xRequestRepository).createRequest(anyString());
         doReturn(requestProxy).when(requestProxy).get();
         doReturn(requestProxy).when(requestProxy).post();
         doReturn(requestProxy).when(requestProxy).addParameter(anyString(), any());
@@ -55,15 +55,15 @@ public class GithubInteractorImplTest {
     @Test
     public void requestUserGithubRepositories_success() {
         doReturn(Observable.fromArray(
-                new GithubRepository(),
-                new GithubRepository(),
-                new GithubRepository()
+                new GithubRepo(),
+                new GithubRepo(),
+                new GithubRepo()
         ).toList().toObservable()).when(requestProxy).observable(any(Type.class));
 
-        TestObserver<GithubRepositoryBO> testObserver = new TestObserver<>();
+        TestObserver<GithubRepoBO> testObserver = new TestObserver<>();
 
-        doCallRealMethod().when(githubInteractor).requestUserGithubRepositories(anyString());
-        githubInteractor.requestUserGithubRepositories("wangjiegulu")
+        doCallRealMethod().when(githubInteractor).requestUserGithubRepos(anyString());
+        githubInteractor.requestUserGithubRepos("wangjiegulu")
                 .subscribe(testObserver);
 
         testObserver.assertNoErrors();
@@ -77,10 +77,10 @@ public class GithubInteractorImplTest {
         doReturn(Observable.error(runtimeException))
                 .when(requestProxy).observable(any(Type.class));
 
-        TestObserver<GithubRepositoryBO> testObserver = new TestObserver<>();
+        TestObserver<GithubRepoBO> testObserver = new TestObserver<>();
 
-        doCallRealMethod().when(githubInteractor).requestUserGithubRepositories(anyString());
-        githubInteractor.requestUserGithubRepositories("wangjiegulu")
+        doCallRealMethod().when(githubInteractor).requestUserGithubRepos(anyString());
+        githubInteractor.requestUserGithubRepos("wangjiegulu")
                 .subscribe(testObserver);
 
         testObserver.assertError(runtimeException);

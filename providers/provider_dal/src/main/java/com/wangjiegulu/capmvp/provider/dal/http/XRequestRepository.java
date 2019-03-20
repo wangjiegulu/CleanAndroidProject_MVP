@@ -9,7 +9,7 @@ import com.wangjiegulu.capmvp.provider.dal.proxy.net.http.RequestProxy;
  * Email: tiantian.china.2@gmail.com
  * Date: 27/03/2018.
  */
-public class XRequestCreator {
+public class XRequestRepository {
 
     /**
      * 默认https

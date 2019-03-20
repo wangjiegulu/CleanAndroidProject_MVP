@@ -1,6 +1,6 @@
 package com.wangjiegulu.capmvp.ui.main;
 
-import com.wangjiegulu.capmvp.provider.bll.interactor.bo.GithubRepositoryBO;
+import com.wangjiegulu.capmvp.provider.bll.interactor.bo.GithubRepoBO;
 import com.wangjiegulu.capmvp.util.TextUtil;
 import com.wangjiegulu.rapidooo.api.OOO;
 import com.wangjiegulu.rapidooo.api.OOOConversion;
@@ -12,7 +12,7 @@ import com.wangjiegulu.rapidooo.api.OOOs;
  * Date: 16/04/2018.
  */
 @OOOs(suffix = "MainVO", fromSuffix = "BO", ooos = {
-        @OOO(from = GithubRepositoryBO.class, conversion = {
+        @OOO(from = GithubRepoBO.class, conversion = {
                 @OOOConversion(
                         fieldName = "stargazersCount",
                         targetFieldName = "readableStargazersCount",

@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.wangjiegulu.capmvp.provider.bll.inject.scope.Provider_Scope_Application;
 import com.wangjiegulu.capmvp.provider.dal.prefs.PrefsConstants;
-import com.wangjiegulu.capmvp.provider.dal.prefs.PrefsHelper;
+import com.wangjiegulu.capmvp.provider.dal.prefs.PrefsRepository;
 
 import javax.inject.Named;
 
@@ -22,8 +22,8 @@ public class ProviderApplicationPrefsModule {
     @Provides
     @Named(PrefsConstants.PREFS_GLOBAL)
     @Provider_Scope_Application
-    public PrefsHelper providerGlobalPrefsHelper() {
-        return new PrefsHelper("global_prefs", Context.MODE_PRIVATE);
+    public PrefsRepository providerGlobalPrefsHelper() {
+        return new PrefsRepository("global_prefs", Context.MODE_PRIVATE);
     }
 
 }

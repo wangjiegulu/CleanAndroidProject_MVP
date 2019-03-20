@@ -40,13 +40,13 @@ public class MainActivity extends BaseActivity implements MainContract.IMainView
     }
 
     @Override
-    public void onRequestUserRepositories(List<GithubRepositoryMainVO> githubRepositories) {
+    public void onRequestUserRepositories(List<GithubRepoMainVO> githubRepositories) {
         adapter.setList(githubRepositories);
         adapter.notifyDataSetChanged();
     }
 
     @Override
-    public void onRepositoryAdapterItemClick(GithubRepositoryMainVO mainRepositoryVO, int position) {
+    public void onRepositoryAdapterItemClick(GithubRepoMainVO mainRepositoryVO, int position) {
         showToast(mainRepositoryVO.getName() + " clicked");
     }
 

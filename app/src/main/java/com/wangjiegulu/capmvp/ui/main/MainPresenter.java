@@ -35,12 +35,12 @@ public class MainPresenter extends BasePresenter implements MainContract.IMainPr
     @Override
     public void requestUserRepositories(String githubUsername) {
         viewer.get().showLoadingDialog(R.string.loading);
-        githubInteractor.requestUserGithubRepositories(githubUsername)
-                .map(GithubRepositoryMainVO::create)
+        githubInteractor.requestUserGithubRepos(githubUsername)
+                .map(GithubRepoMainVO::create)
                 .toList()
                 .observeOn(AppSchedulers.main())
                 .compose(RxCompat.doOnSuccessOrError(() -> viewer.get().cancelLoadingDialog()))
-                .subscribe(new RxCompatSingleObserver<List<GithubRepositoryMainVO>>() {
+                .subscribe(new RxCompatSingleObserver<List<GithubRepoMainVO>>() {
                     @Override
                     public void onSubscribeCompat(Disposable d) {
                         attachDisposable(d);
@@ -53,7 +53,7 @@ public class MainPresenter extends BasePresenter implements MainContract.IMainPr
                     }
 
                     @Override
-                    public void onSuccessCompat(List<GithubRepositoryMainVO> mainRepositoryVMs) {
+                    public void onSuccessCompat(List<GithubRepoMainVO> mainRepositoryVMs) {
                         viewer.get().onRequestUserRepositories(mainRepositoryVMs);
                     }
                 });

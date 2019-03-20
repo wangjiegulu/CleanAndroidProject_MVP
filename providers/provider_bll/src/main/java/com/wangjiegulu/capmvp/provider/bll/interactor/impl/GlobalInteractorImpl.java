@@ -3,7 +3,7 @@ package com.wangjiegulu.capmvp.provider.bll.interactor.impl;
 import com.wangjiegulu.capmvp.provider.bll.interactor.base.BaseInteractor;
 import com.wangjiegulu.capmvp.provider.bll.interactor.contract.GlobalInteractor;
 import com.wangjiegulu.capmvp.provider.dal.prefs.PrefsConstants;
-import com.wangjiegulu.capmvp.provider.dal.prefs.PrefsHelper;
+import com.wangjiegulu.capmvp.provider.dal.prefs.PrefsRepository;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,7 +14,7 @@ import javax.inject.Named;
 public class GlobalInteractorImpl extends BaseInteractor implements GlobalInteractor {
     @Inject
     @Named(PrefsConstants.PREFS_GLOBAL)
-    PrefsHelper globalPrefsHelper;
+    PrefsRepository globalPrefsRepository;
 
     public GlobalInteractorImpl() {
         getProviderApplicationComponent().inject(this);
@@ -22,12 +22,12 @@ public class GlobalInteractorImpl extends BaseInteractor implements GlobalIntera
 
 //    @Override
 //    public long queryGlobalCurrentLoginUserIdSync() {
-//        return globalPrefsHelper.getLong(PrefsConstants.PREFS_GLOBAL_USER_ID, User.USER_NOT_LOGIN_USER_ID);
+//        return globalPrefsRepository.getLong(PrefsConstants.PREFS_GLOBAL_USER_ID, User.USER_NOT_LOGIN_USER_ID);
 //    }
 //
 //    @Override
 //    public void saveGlobalCurrentLoginUserIdSync(long userId) {
-//        globalPrefsHelper.putLong(PrefsConstants.PREFS_GLOBAL_USER_ID, userId).commit();
+//        globalPrefsRepository.putLong(PrefsConstants.PREFS_GLOBAL_USER_ID, userId).commit();
 //    }
 
 }

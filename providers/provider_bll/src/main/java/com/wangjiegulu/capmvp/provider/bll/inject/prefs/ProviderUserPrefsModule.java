@@ -6,7 +6,7 @@ import com.wangjiegulu.capmvp.provider.bll.application.BllApplication;
 import com.wangjiegulu.capmvp.provider.bll.inject.scope.Provider_Scope_User;
 import com.wangjiegulu.capmvp.provider.dal.db.po.User;
 import com.wangjiegulu.capmvp.provider.dal.prefs.PrefsConstants;
-import com.wangjiegulu.capmvp.provider.dal.prefs.PrefsHelper;
+import com.wangjiegulu.capmvp.provider.dal.prefs.PrefsRepository;
 
 import javax.inject.Named;
 
@@ -22,12 +22,12 @@ public class ProviderUserPrefsModule {
     @Provides
     @Named(PrefsConstants.PREFS_USER)
     @Provider_Scope_User
-    public PrefsHelper providerUserPrefsHelper() {
+    public PrefsRepository providerUserPrefsHelper() {
         long currentUserId = BllApplication.getInstance()
                 .providerApplicationComponent
                 .providerGlobalPrefsHelper()
                 .getLong(PrefsConstants.PREFS_GLOBAL_USER_ID, User.USER_NOT_LOGIN_USER_ID);
-        return new PrefsHelper("user_prefs_" + BllApplication.getInstance().getCurrentUserCode(currentUserId), Context.MODE_PRIVATE);
+        return new PrefsRepository("user_prefs_" + BllApplication.getInstance().getCurrentUserCode(currentUserId), Context.MODE_PRIVATE);
     }
 
 }

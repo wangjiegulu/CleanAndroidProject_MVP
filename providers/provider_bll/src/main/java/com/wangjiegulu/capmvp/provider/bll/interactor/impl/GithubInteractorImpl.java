@@ -4,10 +4,10 @@ import com.google.gson.reflect.TypeToken;
 
 import com.wangjiegulu.capmvp.provider.bll.application.configuration.scheduler.ProviderSchedulers;
 import com.wangjiegulu.capmvp.provider.bll.interactor.base.BaseInteractor;
-import com.wangjiegulu.capmvp.provider.bll.interactor.bo.GithubRepositoryBO;
+import com.wangjiegulu.capmvp.provider.bll.interactor.bo.GithubRepoBO;
 import com.wangjiegulu.capmvp.provider.bll.interactor.contract.GithubInteractor;
-import com.wangjiegulu.capmvp.provider.dal.http.XRequestCreator;
-import com.wangjiegulu.capmvp.provider.dal.http.pojo.GithubRepository;
+import com.wangjiegulu.capmvp.provider.dal.http.XRequestRepository;
+import com.wangjiegulu.capmvp.provider.dal.http.pojo.GithubRepo;
 import com.wangjiegulu.capmvp.provider.dal.http.webapi.WebApi;
 import com.wangjiegulu.capmvp.usagesupport.compat.subscriber.RxCompatException;
 
@@ -25,17 +25,17 @@ import io.reactivex.Observable;
 public class GithubInteractorImpl extends BaseInteractor implements GithubInteractor {
 
     @Inject
-    XRequestCreator xRequestCreator;
+    XRequestRepository xRequestRepository;
 
     public GithubInteractorImpl() {
         getProviderUserInteractorComponent().inject(this);
     }
 
     @Override
-    public Observable<GithubRepositoryBO> requestUserGithubRepositories(String githubUsername) {
-        return xRequestCreator.createRequest(WebApi.User.REPOS.replace("{user}", githubUsername))
+    public Observable<GithubRepoBO> requestUserGithubRepos(String githubUsername) {
+        return xRequestRepository.createRequest(WebApi.User.REPOS.replace("{user}", githubUsername))
                 .get()
-                .<List<GithubRepository>>observable(TypeToken.getParameterized(List.class, GithubRepository.class).getType())
+                .<List<GithubRepo>>observable(TypeToken.getParameterized(List.class, GithubRepo.class).getType())
                 .subscribeOn(ProviderSchedulers.net())
                 .doOnNext(o -> {
                     if (null == o) {
@@ -43,7 +43,13 @@ public class GithubInteractorImpl extends BaseInteractor implements GithubIntera
                     }
                 })
                 .flatMap(Observable::fromIterable)
-                .map(GithubRepositoryBO::create);
+                .map(GithubRepoBO::create);
+    }
+
+    @Override
+    public Observable<String> requestModifyUserInfo(String username, int age) {
+
+        return null;
     }
 
 

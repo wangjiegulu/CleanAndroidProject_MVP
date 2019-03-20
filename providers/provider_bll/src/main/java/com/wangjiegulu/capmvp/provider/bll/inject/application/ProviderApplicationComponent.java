@@ -5,7 +5,7 @@ import com.wangjiegulu.capmvp.provider.bll.inject.prefs.ProviderApplicationPrefs
 import com.wangjiegulu.capmvp.provider.bll.inject.scope.Provider_Scope_Application;
 import com.wangjiegulu.capmvp.provider.bll.interactor.impl.GlobalInteractorImpl;
 import com.wangjiegulu.capmvp.provider.dal.prefs.PrefsConstants;
-import com.wangjiegulu.capmvp.provider.dal.prefs.PrefsHelper;
+import com.wangjiegulu.capmvp.provider.dal.prefs.PrefsRepository;
 
 import javax.inject.Named;
 
@@ -20,7 +20,7 @@ import dagger.Component;
 @Provider_Scope_Application
 public interface ProviderApplicationComponent {
     @Named(PrefsConstants.PREFS_GLOBAL)
-    PrefsHelper providerGlobalPrefsHelper();
+    PrefsRepository providerGlobalPrefsHelper();
 
     void inject(GlobalInteractorImpl interactor);
 

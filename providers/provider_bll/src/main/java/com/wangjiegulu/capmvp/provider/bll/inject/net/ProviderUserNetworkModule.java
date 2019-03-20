@@ -1,7 +1,7 @@
 package com.wangjiegulu.capmvp.provider.bll.inject.net;
 
 import com.wangjiegulu.capmvp.provider.bll.inject.scope.Provider_Scope_User;
-import com.wangjiegulu.capmvp.provider.dal.http.XRequestCreator;
+import com.wangjiegulu.capmvp.provider.dal.http.XRequestRepository;
 
 import dagger.Module;
 import dagger.Provides;
@@ -15,8 +15,8 @@ import dagger.Provides;
 public class ProviderUserNetworkModule {
     @Provides
     @Provider_Scope_User
-    public XRequestCreator providerXRequestCreator() {
-        return new XRequestCreator();
+    public XRequestRepository providerXRequestCreator() {
+        return new XRequestRepository();
     }
 
 }

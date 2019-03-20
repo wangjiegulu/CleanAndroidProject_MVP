@@ -17,12 +17,12 @@ import java.util.Set;
  * Email: tiantian.china.2@gmail.com
  * Date: 10/31/16.
  */
-public class PrefsHelper {
+public class PrefsRepository {
     public SharedPreferences prefs;
     public SharedPreferences.Editor editor;
 
     @SuppressLint("CommitPrefEdits")
-    public PrefsHelper(String name, int mode) {
+    public PrefsRepository(String name, int mode) {
         prefs = DalApplication.getInstance().getApplication().getSharedPreferences(name, mode);
         editor = prefs.edit();
     }
@@ -84,31 +84,31 @@ public class PrefsHelper {
     }
 
 
-    public PrefsHelper putString(String key, String value) {
+    public PrefsRepository putString(String key, String value) {
         editor.putString(key, value);
 //        editor.commit();
         return this;
     }
 
-    public PrefsHelper putInt(String key, int value) {
+    public PrefsRepository putInt(String key, int value) {
         editor.putInt(key, value);
 //        editor.commit();
         return this;
     }
 
-    public PrefsHelper putFloat(String key, float value) {
+    public PrefsRepository putFloat(String key, float value) {
         editor.putFloat(key, value);
 //        editor.commit();
         return this;
     }
 
-    public PrefsHelper putLong(String key, long value) {
+    public PrefsRepository putLong(String key, long value) {
         editor.putLong(key, value);
 //        editor.commit();
         return this;
     }
 
-    public PrefsHelper putBoolean(String key, boolean value) {
+    public PrefsRepository putBoolean(String key, boolean value) {
         editor.putBoolean(key, value);
 //        editor.commit();
         return this;
@@ -123,13 +123,13 @@ public class PrefsHelper {
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public PrefsHelper putStringSet(String key, Set<String> value) {
+    public PrefsRepository putStringSet(String key, Set<String> value) {
         editor.putStringSet(key, value);
         editor.commit();
         return this;
     }
 
-    public PrefsHelper clear() {
+    public PrefsRepository clear() {
         editor.clear();
         return this;
     }

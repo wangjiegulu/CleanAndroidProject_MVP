@@ -1,7 +1,7 @@
 package com.wangjiegulu.capmvp.provider.bll.interactor.contract;
 
 
-import com.wangjiegulu.capmvp.provider.bll.interactor.bo.GithubRepositoryBO;
+import com.wangjiegulu.capmvp.provider.bll.interactor.bo.GithubRepoBO;
 
 import io.reactivex.Observable;
 
@@ -11,5 +11,6 @@ import io.reactivex.Observable;
  * Date: 23/03/2018.
  */
 public interface GithubInteractor {
-    Observable<GithubRepositoryBO> requestUserGithubRepositories(String githubUsername);
+    Observable<GithubRepoBO> requestUserGithubRepos(String githubUsername);
+    Observable<String> requestModifyUserInfo(String username, int age);
 }

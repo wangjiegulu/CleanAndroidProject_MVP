@@ -6,9 +6,9 @@ import com.wangjiegulu.capmvp.provider.bll.interactor.cache.CurrentLoginCache;
 import com.wangjiegulu.capmvp.provider.bll.interactor.contract.UserInteractor;
 import com.wangjiegulu.capmvp.provider.dal.db.dao.contract.UserDao;
 import com.wangjiegulu.capmvp.provider.dal.db.po.User;
+import com.wangjiegulu.capmvp.provider.dal.http.XRequestRepository;
 import com.wangjiegulu.capmvp.provider.dal.prefs.PrefsConstants;
-import com.wangjiegulu.capmvp.provider.dal.prefs.PrefsHelper;
-import com.wangjiegulu.capmvp.provider.dal.http.XRequestCreator;
+import com.wangjiegulu.capmvp.provider.dal.prefs.PrefsRepository;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -22,11 +22,11 @@ public class UserInteractorImpl extends BaseInteractor implements UserInteractor
 
     @Inject
     @Named(PrefsConstants.PREFS_GLOBAL)
-    PrefsHelper globalPrefsHelper;
+    PrefsRepository globalPrefsRepository;
 
     @Inject
     @Named(PrefsConstants.PREFS_USER)
-    PrefsHelper userPrefsHelper;
+    PrefsRepository userPrefsRepository;
 
     @Inject
     UserDao userDao;
@@ -35,7 +35,7 @@ public class UserInteractorImpl extends BaseInteractor implements UserInteractor
     CurrentLoginCache currentLoginCache;
 
     @Inject
-    XRequestCreator xRequestCreator;
+    XRequestRepository xRequestRepository;
 
     public UserInteractorImpl() {
         getProviderUserInteractorComponent().inject(this);

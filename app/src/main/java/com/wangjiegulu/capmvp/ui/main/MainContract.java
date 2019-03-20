@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface MainContract {
     interface IMainViewer extends Viewer {
-        void onRequestUserRepositories(List<GithubRepositoryMainVO> githubRepositories);
+        void onRequestUserRepositories(List<GithubRepoMainVO> githubRepositories);
     }
 
     interface IMainPresenter extends Presenter {

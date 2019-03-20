@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.wangjiegulu.capmvp.R;
-import com.wangjiegulu.capmvp.ui.main.GithubRepositoryMainVO;
+import com.wangjiegulu.capmvp.ui.main.GithubRepoMainVO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +20,10 @@ import java.util.List;
  */
 public class RepositoryAdapter extends RecyclerView.Adapter<RepositoryAdapter.RepositoryNormalViewHolder> {
     public interface OnRepositoryAdapterItemClickListener {
-        void onRepositoryAdapterItemClick(GithubRepositoryMainVO githubRepositoryMainVO, int position);
+        void onRepositoryAdapterItemClick(GithubRepoMainVO githubRepositoryMainVO, int position);
     }
 
-    private List<GithubRepositoryMainVO> list = new ArrayList<>();
+    private List<GithubRepoMainVO> list = new ArrayList<>();
 
     private OnRepositoryAdapterItemClickListener onRepositoryAdapterItemClickListener;
 
@@ -31,7 +31,7 @@ public class RepositoryAdapter extends RecyclerView.Adapter<RepositoryAdapter.Re
         this.onRepositoryAdapterItemClickListener = onRepositoryAdapterItemClickListener;
     }
 
-    public void setList(List<GithubRepositoryMainVO> list) {
+    public void setList(List<GithubRepoMainVO> list) {
         this.list = null == list ? new ArrayList<>() : list;
     }
 
@@ -70,7 +70,7 @@ public class RepositoryAdapter extends RecyclerView.Adapter<RepositoryAdapter.Re
 
         }
 
-        public void onBindViewHolder(GithubRepositoryMainVO githubRepository, int position) {
+        public void onBindViewHolder(GithubRepoMainVO githubRepository, int position) {
             stargazersCountTv.setText(githubRepository.getReadableStargazersCount());
             titleTv.setText(githubRepository.getName());
         }
