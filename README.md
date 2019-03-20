@@ -28,7 +28,7 @@ app:
     |             +--- AppSchedulers -> Schedulers of RxJava in viewer layer.
     |
     |
-    +--- inject/ -> CI configuration, inject interactors from bll(business logic layer).
+    +--- inject/ -> DI configuration, inject interactors from bll(business logic layer).
     |
     +--- control/ -> Custom views.
     |
@@ -44,7 +44,7 @@ app:
                    |
                    +--- view/ -> View modules for {Main}Activity.
                    |
-                   +--- vm/ -> ViewModels for {Main}Activity.
+                   +--- vo/ -> View Objects for {Main}Activity.
 
 
 
@@ -64,7 +64,7 @@ provider(the `model` layer in `MVP`, provider logic and data for app):
     |     |                          +--- interceptor/ -> Interceptors, such as add default common parameters for each request, parameters sign, encryption, login token status time out...
     |     |
     |     |
-    |     +--- inject/ -> CI configuration, inject dependencies from dal(data access layer).
+    |     +--- inject/ -> DI configuration, inject dependencies from dal(data access layer).
     |     |
     |     +--- interactor/ -> Interactors exposed to the presenter layer.
     |     |        |
@@ -75,7 +75,7 @@ provider(the `model` layer in `MVP`, provider logic and data for app):
     |     |        +--- rxevents/ -> Events for rxbus.
     |     |
     |     |
-    |     +--- vm/ -> Common vm class.
+    |     +--- bo/ -> business objects.
     |
     +--- dal/ -> Data access layer.
           |
@@ -89,7 +89,7 @@ provider(the `model` layer in `MVP`, provider logic and data for app):
           |
           +--- file/ -> File access data source.
           |     |
-          |     +--- FileStructure -> File storage structure.
+          |     +--- FileRespository -> File storage respository.
           |
           +--- net/ -> Network access data source.
           |     |
@@ -104,7 +104,7 @@ provider(the `model` layer in `MVP`, provider logic and data for app):
           |     |
           |     +--- PrefsConstants -> Shared preference keys.
           |     |
-          |     +--- PrefsHelper -> Shared preference access objects.
+          |     +--- PrefsRespository -> Shared preference access objects.
           |
           +--- ...
 
