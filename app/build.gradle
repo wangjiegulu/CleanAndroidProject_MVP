@@ -76,6 +76,7 @@ dependencies {
     // dagger2
     implementation "com.google.dagger:dagger:$global_daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$global_daggerCompilerVersion"
+    compileOnly 'javax.annotation:jsr250-api:1.0'
 
     // rxjava/rxandroid
     implementation "io.reactivex.rxjava2:rxjava:$global_rxjavaVersion"
