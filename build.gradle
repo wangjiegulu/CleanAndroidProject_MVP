@@ -56,8 +56,8 @@ allprojects {
         global_rapidormVersion = '2.2.1@aar'
         global_rapidormCompilerVersion = '2.2.0'
 
-        global_rapidoooApiVersion = '0.0.4'
-        global_rapidoooCompilerVersion = '0.0.4'
+        global_rapidoooApiVersion = '1.1.4'
+        global_rapidoooCompilerVersion = '1.1.4'
 
         // ************** for test ************** //
         global_junitVersion = '4.12'

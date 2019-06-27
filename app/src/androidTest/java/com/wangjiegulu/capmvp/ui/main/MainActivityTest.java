@@ -50,7 +50,6 @@ public class MainActivityTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-
         ActivityLifecycleMonitorRegistry.getInstance().addLifecycleCallback((activity, stage) -> {
             if (activity instanceof MainActivity && Stage.PRE_ON_CREATE == stage) {
                 ((MainActivity) activity).setCreateViewerComponent(() -> mock(ViewerComponent.class));
@@ -63,10 +62,10 @@ public class MainActivityTest {
     @Test
     public void requestUserRepositories_normal() throws Throwable {
         activityRule.launchActivity(null);
-        List<GithubRepositoryMainVO> list = new ArrayList<>();
+        List<GithubRepoMainVO> list = new ArrayList<>();
 
         for (int i = 0; i < 50; i++) {
-            GithubRepositoryMainVO githubRepositoryVO = mock(GithubRepositoryMainVO.class);
+            GithubRepoMainVO githubRepositoryVO = mock(GithubRepoMainVO.class);
             doReturn("name_" + i).when(githubRepositoryVO).getName();
             doReturn(0 != i ? i * 123 : null).when(githubRepositoryVO).getStargazersCount();
             System.out.println("requestUserRepositories_normal, githubRepository.getStargazersCount(): " + githubRepositoryVO.getStargazersCount());

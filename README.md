@@ -40,6 +40,8 @@ app:
                    |
                    +--- {Main}Prsenter.java -> The corresponding Presenter for {Main}Activity.
                    |
+                   +--- {Main}Contract.java -> The contract class for {Main}Activity.
+                   |
                    +--- adapter/ -> Adapters for {Main}Activity.
                    |
                    +--- view/ -> View modules for {Main}Activity.
